@@ -1,73 +1,56 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        sisadoshast-front
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+  <div>
+    <arsham v-for="name in names" :key="name" :name="name" @kir="handleKir" />
+    <el-table :data="tableData">
+              <el-table-column prop="date" label="Date" width="140">
+              </el-table-column>
+              <el-table-column prop="name" label="Name" width="120">
+              </el-table-column>
+              <el-table-column prop="address" label="Address"> </el-table-column>
+    </el-table>
+    <h2>{{ $store.state.count }}</h2>
+    <button @click="$store.commit('increment')">increment</button>
   </div>
 </template>
 
 <script>
-export default {}
+
+import Arsham from '~/components/Arsham.vue';
+
+export default {
+  components: {
+      Arsham
+  },
+  mounted() {
+      fetch("https://reqres.in/api/users?page=2")
+      .then(response => response.json())
+      .then(function(data) {
+          console.log(data)
+          alert(JSON.stringify(data))
+      })
+      .catch(function() {
+          // This is where you run code if the server returns any errors
+      });
+  },
+  data() {
+    const item = {
+      date: "2016-05-02",
+      name: "Tom",
+      address: "No. 189, Grove St, Los Angeles",
+    };
+    return {
+      tableData: Array(10).fill(item),
+      names: [
+        'Arsham',
+        'Ali',
+        'Nima'
+      ]
+    };
+  },
+  methods: {
+    handleKir(name) {
+      alert('kir tu ' + name)
+    }
+  }
+};
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>

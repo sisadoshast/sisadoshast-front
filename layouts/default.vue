@@ -1,62 +1,100 @@
 <template>
-  <div>
-    <Nuxt />
-  </div>
+  <el-container style="height: 100%; border: 1px solid #eee">
+    <el-header>
+      <el-row type="flex">
+        <el-col :span="2">
+          <nuxt-link tag="a" to="/">
+            <img style="height: 60%; width: 60%; object-fit: contain" src="/logo919.png"/>
+          </nuxt-link>
+        </el-col>
+        <el-col :span="19"/>
+        <el-col :span="1">
+          <el-dropdown>
+            <i class="el-icon-setting" style="margin-right: 15px"></i>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>View</el-dropdown-item>
+              <el-dropdown-item>Add</el-dropdown-item>
+              <el-dropdown-item>Delete</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </el-col>
+        <el-col :span="2"><span>Tom</span></el-col>
+      </el-row>
+    </el-header>
+
+    <el-container>
+      <el-aside width="200px">
+        <el-menu :default-openeds="['1', '3']">
+          <el-submenu index="1">
+            <template slot="title"
+              ><i class="el-icon-message"></i>Navigator One</template
+            >
+            <el-menu-item-group>
+              <template slot="title">Group 1</template>
+              <nuxt-link tag="el-menu-item" index="1-1" to="/test">Test</nuxt-link>
+            </el-menu-item-group>
+            <el-menu-item-group title="Group 2">
+              <el-menu-item index="1-3">Option 3</el-menu-item>
+            </el-menu-item-group>
+            <el-submenu index="1-4">
+              <template slot="title">Option4</template>
+              <el-menu-item index="1-4-1">Option 4-1</el-menu-item>
+            </el-submenu>
+          </el-submenu>
+          <el-submenu index="2">
+            <template slot="title"
+              ><i class="el-icon-menu"></i>Navigator Two</template
+            >
+            <el-menu-item-group>
+              <template slot="title">Group 1</template>
+              <el-menu-item index="2-1">Option 1</el-menu-item>
+              <el-menu-item index="2-2">Option 2</el-menu-item>
+            </el-menu-item-group>
+            <el-menu-item-group title="Group 2">
+              <el-menu-item index="2-3">Option 3</el-menu-item>
+            </el-menu-item-group>
+            <el-submenu index="2-4">
+              <template slot="title">Option 4</template>
+              <el-menu-item index="2-4-1">Option 4-1</el-menu-item>
+            </el-submenu>
+          </el-submenu>
+          <el-submenu index="3">
+            <template slot="title"
+              ><i class="el-icon-setting"></i>Navigator Three</template
+            >
+            <el-menu-item-group>
+              <template slot="title">Group 1</template>
+              <el-menu-item index="3-1">Option 1</el-menu-item>
+              <el-menu-item index="3-2">Option 2</el-menu-item>
+            </el-menu-item-group>
+            <el-menu-item-group title="Group 2">
+              <el-menu-item index="3-3">Option 3</el-menu-item>
+            </el-menu-item-group>
+            <el-submenu index="3-4">
+              <template slot="title">Option 4</template>
+              <el-menu-item index="3-4-1">Option 4-1</el-menu-item>
+            </el-submenu>
+          </el-submenu>
+        </el-menu>
+      </el-aside>
+
+      <el-container style="max-height: 100%; overflow: scroll">
+        <el-main>
+          <Nuxt />
+        </el-main>
+      </el-container>
+    </el-container>
+  </el-container>
 </template>
 
 <style>
-html {
-  font-family:
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+.el-header {
+  background-color: #c2c2c5;
+  color:#3429d4;
+  line-height: 60px;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+.el-aside {
+  color: #3429d4;
 }
 </style>
