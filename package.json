@@ -10,9 +10,18 @@
   },
   "dependencies": {
     "@nuxtjs/proxy": "^2.0.1",
+    "cookie": "^0.4.1",
     "core-js": "^3.6.5",
     "element-ui": "^2.13.2",
-    "nuxt": "^2.14.6"
+    "fetch-intercept": "^2.3.1",
+    "js-cookie": "^2.2.1",
+    "nuxt": "^2.14.6",
+    "vuex-persistedstate": "^4.0.0-beta.1",
+    "whatwg-fetch": "^3.5.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "fibers": "^5.0.0",
+    "sass": "^1.29.0",
+    "sass-loader": "^10.1.0"
+  }
 }

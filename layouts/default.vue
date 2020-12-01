@@ -18,7 +18,14 @@
             </el-dropdown-menu>
           </el-dropdown>
         </el-col>
-        <el-col :span="2"><span>Tom</span></el-col>
+        <el-col :span="1"><span>Tom</span></el-col>
+        <el-col :span="1">
+          <el-button type="danger"
+                     @click="logout"
+                     :loading="logoutLoading"
+                     icon="el-icon-switch-button" circle>
+          </el-button>
+        </el-col>
       </el-row>
     </el-header>
 
@@ -86,6 +93,27 @@
     </el-container>
   </el-container>
 </template>
+
+<script>
+export default {
+  transition: 'home',
+  data() {
+    return {
+      logoutLoading: false
+    }
+  },
+  methods: {
+    logout() {
+      this.logoutLoading = true
+      this.$store.commit('logout')
+      setTimeout(() => {
+        this.$router.push({ path: "/login" })
+        this.logoutLoading = false
+      }, 200)
+    }
+  }
+}
+</script>
 
 <style>
 .el-header {

@@ -15,17 +15,21 @@ export default {
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
     'element-ui/lib/theme-chalk/index.css',
-    '@/assets/global.css'
+    '@/assets/global.scss',
+    '@/assets/transitions.scss',
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    '@/plugins/element-ui'
+    '@/plugins/element-ui',
+    '@/plugins/persistedState',
+    '@/plugins/fetchInteceptors',
   ],
 
   router: {
     linkActiveClass: 'is-active',
     linkExactActiveClass: 'is-active',
+    middleware: 'router-gaurd'
   },
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -42,7 +46,7 @@ export default {
   proxy: {
     '/api': {
       target: 'http://localhost:8080',
-      changeOrigin: true
+      // changeOrigin: true
     }
   },
   // Build Configuration (https://go.nuxtjs.dev/config-build)

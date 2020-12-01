@@ -8,8 +8,6 @@
               </el-table-column>
               <el-table-column prop="address" label="Address"> </el-table-column>
     </el-table>
-    <h2>{{ $store.state.count }}</h2>
-    <button @click="$store.commit('increment')">increment</button>
   </div>
 </template>
 
@@ -22,7 +20,7 @@ export default {
       Arsham
   },
   mounted() {
-      fetch("https://reqres.in/api/users?page=2")
+      fetch("/api/departments")
       .then(response => response.json())
       .then(function(data) {
           console.log(data)
