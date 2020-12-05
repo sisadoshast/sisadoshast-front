@@ -1,14 +1,29 @@
 import fetchIntercept from 'fetch-intercept';
-import { storeInstance } from '~/store'
+import Cookies from 'js-cookie'
 
 fetchIntercept.register({
   request: function (url, config) {
-    if (storeInstance.state.token && !url.includes('/api/authenticate')) {
+    console.log('1')
+    console.log(config)
+    console.log(url)
+    if (!config) {
+      config = {}
+    }
+
+    let cookies
+    if (process.server) {
+    } else {
+      cookies = Cookies.get('access_token_360')
+    }
+
+    if (cookies) {
       if (!config.headers) {
         config.headers = {}
       }
+      console.log('adding headers')
+      console.log(Cookies.get('access_token_360'))
       Object.assign(config.headers, {
-        'AUTHORIZATION': `Bearer ${storeInstance.state.token}`
+        'AUTHORIZATION': `Bearer ${Cookies.get('access_token_360')}`
       })
     }
     return [url, config];

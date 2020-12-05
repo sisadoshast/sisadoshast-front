@@ -8,27 +8,25 @@
               </el-table-column>
               <el-table-column prop="address" label="Address"> </el-table-column>
     </el-table>
+    {{ response }}
   </div>
 </template>
 
 <script>
 
 import Arsham from '~/components/Arsham.vue';
+import config from '~/plugins/config'
 
 export default {
   components: {
       Arsham
   },
+  async asyncData({ params, error }) {
+    const response = await fetch(`${config.server}/api/departments`)
+      .then(res => res.json())
+    return { response }
+  },
   mounted() {
-      fetch("/api/departments")
-      .then(response => response.json())
-      .then(function(data) {
-          console.log(data)
-          alert(JSON.stringify(data))
-      })
-      .catch(function() {
-          // This is where you run code if the server returns any errors
-      });
   },
   data() {
     const item = {
@@ -42,7 +40,8 @@ export default {
         'Arsham',
         'Ali',
         'Nima'
-      ]
+      ],
+      response: {}
     };
   },
   methods: {

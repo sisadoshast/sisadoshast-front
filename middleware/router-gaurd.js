@@ -10,6 +10,14 @@ export default function ({ app, redirect }) {
     }
   });
 
+  app.router.beforeResolve((to, from, next) => {
+    if ((to.path !== '/login' && !isAuthenticated())) {
+      next('/login')
+    } else {
+      next()
+    }
+  })
+
   function isAuthenticated() {
     return Boolean(app.store.state.token)
   }

@@ -36,6 +36,9 @@
 </template>
 
 <script>
+
+import Cookies from 'js-cookie'
+
 export default {
   name: "login",
   layout: 'simple',
@@ -81,6 +84,7 @@ export default {
           const content = response.json();
           content.then(contentR => {
             this.$store.commit("setToken", contentR.id_token)
+            Cookies.set('access_token_360', contentR.id_token)
             this.$router.push({ path: "/" })
           })
         })
